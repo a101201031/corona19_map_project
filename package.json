@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "name": "corona19_map_project",
+  "version": "1.0.0",
+  "description": "corona19 map",
+  "main": "index.js",
+  "repository": "https://github.com/a101201031/corona19_map_project.git",
+  "author": "a101201031 <0825tngus@naver.com>",
+  "license": "MIT"
+}
