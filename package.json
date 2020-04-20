@@ -1,9 +1,13 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4",
+    "yamljs": "^0.3.0"
   },
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "yarn bulid && node dist/app.js",
     "bulid": "./node_modules/.bin/babel -d dist/ src/"
   },
   "name": "corona19_map_project",
@@ -18,9 +22,6 @@
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-arrow-functions": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.9.0",
-    "body-parser": "^1.19.0",
-    "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "@babel/preset-env": "^7.9.0"
   }
 }

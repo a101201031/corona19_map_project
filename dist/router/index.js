@@ -5,15 +5,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mainRouter = void 0;
 
-var app = _interopRequireWildcard(require("express"));
+var _express = require("express");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+const mainRouter = (0, _express.Router)();
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: user management
+ * definitions:
+ *   Users:
+ *     type: object
+ *     required:
+ *       - content
+ *     properties:
+ *       _id:
+ *         type: string
+ *         description: ObjectID
+ *       content:
+ *         type: string
+ *         description: 할일 내용
+ *       done:
+ *         type: boolean
+ *         description: 완료 여부
+ */
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     tags: [Users]
+ *     description: Returns users
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: get user info
+ *
+ *         schema:
+ *           type: object
+ *           items:
+ *             $ref: '#/api/users'
+ */
 
-const mainRouter = app.Router();
 exports.mainRouter = mainRouter;
-mainRouter.get("/", (req, res) => {
+mainRouter.get("/users", (req, res) => {
   res.json({
     data: "success"
   });
