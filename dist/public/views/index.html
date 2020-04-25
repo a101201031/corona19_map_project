@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coronas</title>
+  </head>
+  <body>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e665ea91dcc897ba821c8c25dca66897"
+    ></script>
+    <div id="map" style="width: 90vw; height: 90vh;"></div>
+    <script>
+      const container = document.getElementById('map');
+      let options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 8,
+      };
+      let map = new kakao.maps.Map(container, options);
+    </script>
+  </body>
+</html>

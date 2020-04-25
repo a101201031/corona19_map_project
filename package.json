@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
@@ -8,7 +9,7 @@
   },
   "scripts": {
     "start": "yarn bulid && node dist/app.js",
-    "bulid": "./node_modules/.bin/babel -d dist/ src/"
+    "bulid": "./node_modules/.bin/babel -d dist/ src/ && cp -rf ./src/public/ ./dist/public/"
   },
   "name": "corona19_map_project",
   "version": "1.0.0",

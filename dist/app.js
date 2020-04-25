@@ -4,6 +4,8 @@ var _express = _interopRequireDefault(require("express"));
 
 var bodyPaser = _interopRequireWildcard(require("body-parser"));
 
+var ejs = _interopRequireWildcard(require("ejs"));
+
 var _swaggerDoc = require("./swaggerDoc");
 
 var _router = require("./router");
@@ -14,35 +16,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import swaggerJSDoc from "swagger-jsdoc";
-// import swaggerUi from "swagger-ui-express";
-// const swaggerDefinition = {
-//   info: {
-//     // API informations (required)
-//     title: "왜안되냐고? 몰라", // Title (required)
-//     version: "1.0.0", // Version (required)
-//     description: "Auth API", // Description (optional)
-//   },
-//   host: "localhost:3000", // Host (optional)
-//   basePath: "/", // Base path (optional)
-// };
-// // Options for the swagger docs
-// const options = {
-//   // Import swaggerDefinitions
-//   swaggerDefinition,
-//   // Path to the API docs
-//   apis: ["./router/*.js"],
-// };
-// // Initialize swagger-jsdoc -> returns validated swagger spec in json format
-// const swaggerSpec = swaggerJSDoc(options);
 const app = (0, _express.default)();
 const port = 3000;
 app.use(bodyPaser.json());
 app.use(bodyPaser.urlencoded({
   extended: false
 }));
-app.use("/api", _router.mainRouter);
-app.use(_swaggerDoc.swaggerRouter);
-app.get("/", (req, res) => res.send("hello World")); // API Docs
+app.set('views', __dirname + '/public/views');
+app.set('view engine', 'ejs');
+app.engine('html', ejs.renderFile);
+app.use('/', _router.mainRouter);
+app.use(_swaggerDoc.swaggerRouter); // API Docs
+//app.get("/", (req, res) => res.send("hello World"));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
