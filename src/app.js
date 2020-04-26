@@ -3,6 +3,7 @@ import * as bodyPaser from 'body-parser';
 import * as ejs from 'ejs';
 import { swaggerRouter } from './swaggerDoc';
 import { mainRouter } from './router';
+import { join } from 'path';
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,8 @@ app.use(
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
+
+app.use(express.static(join(__dirname, '/public')));
 
 app.use('/', mainRouter);
 app.use(swaggerRouter); // API Docs
