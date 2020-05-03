@@ -12,21 +12,29 @@
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e665ea91dcc897ba821c8c25dca66897"
     ></script>
     <script type="text/javascript" src="/javascript/getLocation.js"></script>
+    <script type="text/javascript" src="/javascript/mapApiFunction.js"></script>
     <div class="top-borad">
-      <div class="main-div"><span>HELLO</span></div>
+      <div class="left-top-div" style="color: white;"><span>HELLO</span></div>
     </div>
     <div id="map"></div>
     <script>
-      getLocation().then((myLocation) => {
-        const container = document.getElementById('map');
-        let options = {
-          center: new kakao.maps.LatLng(Number(myLocation.latitude), Number(myLocation.longitude)),
-          level: 6,
-        };
-        console.log(myLocation.latitude);
-        console.log(myLocation.longitude);
-        let map = new kakao.maps.Map(container, options);
-      });
+      const container = document.getElementById('map');
+      let options = {
+        center: new kakao.maps.LatLng(defaultLocation.latitude, defaultLocation.longitude),
+        level: 13,
+      };
+      let map = new kakao.maps.Map(container, options);
+      getLocation()
+        .then((location) => {
+          moveMap(map, location);
+          // let myLocation = new kakao.maps.LatLng(location.latitude, location.longitude);
+          // let myLevel = map.getLevel();
+          // ();
+          // map.setCenter(myLocation);
+        })
+        .catch(() => {
+          alert('위치 정보 가져오기 실패.');
+        });
     </script>
   </body>
 </html>
