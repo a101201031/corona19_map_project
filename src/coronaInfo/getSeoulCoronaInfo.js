@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 // set data directory
-const dataDir = path.join(__dirname, '..');
+const dataDir = path.join(__dirname, 'data');
 
 // date format YYYYMMDD
 
