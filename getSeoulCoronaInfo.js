@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 // set data directory
-const dataDir = path.join(__dirname, '../data');
+const dataDir = path.join(__dirname, 'coronaData');
 
 // date format YYYYMMDD
 
@@ -19,7 +19,7 @@ let getDate = new Date();
 let myDate = dateToYYYYMMDD(getDate);
 
 // Farsing Seoul CoronaV Page
-url = 'http://www.seoul.go.kr/coronaV/coronaStatus.do';
+const url = 'http://www.seoul.go.kr/coronaV/coronaStatus.do';
 
 const resultJson = {};
 request.get(url, (error, res, html) => {
@@ -30,13 +30,15 @@ request.get(url, (error, res, html) => {
   // get update-time (source data)
   const $sourceDate = $('h5.update-date').children('strong').eq(0);
   console.log($sourceDate.text());
+  // save update-time
   resultJson.date = $sourceDate.text();
+
   const $allData = $('table.status-datatable').children('tbody');
+  // get confiremd Number
   const $confirmedIndex = $allData.children('tr').children('th').children('p');
+  // get confiremd Info without nubmer
   const $confiremdInfo = $allData.children('tr').children('td');
-  // console.log($confirmedIndex[1].children[0].data);
   for (var i = 0; i < $confirmedIndex.length; i++) {
-    // console.log($confirmedIndex[i].children[0].data);
     resultJson[$confirmedIndex[i].children[0].data] = {
       patienId: $confiremdInfo[i * 6].children[0].data,
       confiremdDate: $confiremdInfo[i * 6 + 1].children[0].data,
@@ -46,7 +48,7 @@ request.get(url, (error, res, html) => {
       takeAction: $confiremdInfo[i * 6 + 5].children[0].data,
     };
   }
-  console.log(resultJson);
+  // console.log(resultJson);
   /* old way
   // change to array
   const dataArr = $allData.children('tr').text().split('\n');
