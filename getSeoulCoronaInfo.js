@@ -1,64 +1,36 @@
+const fs = require('fs');
 const path = require('path');
 const request = require('request');
 const cheerio = require('cheerio');
-const fs = require('fs');
+const dayjs = require('dayjs');
 
-// set data directory
-const dataDir = path.join(__dirname, 'coronaData');
-
-// date format YYYYMMDD
-
-function dateToYYYYMMDD(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth() <= 8 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
-  const day = date.getDate() <= 9 ? '0' + date.getDate() : date.getDate();
-  return year + '' + month + '' + day;
-}
-
-let getDate = new Date();
-let myDate = dateToYYYYMMDD(getDate);
-
-// Farsing Seoul CoronaV Page
 const url = 'http://www.seoul.go.kr/coronaV/coronaStatus.do';
 
+const resultItemNames = ['patienId', 'confiremdDate', 'residence', 'tripHistory', 'visitType', 'takeAction'];
 const resultJson = {};
 request.get(url, (error, res, html) => {
   if (error) {
     throw error;
   }
-  const $ = cheerio.load(html);
-  // get update-time (source data)
-  const $sourceDate = $('h5.update-date').children('strong').eq(0);
-  console.log($sourceDate.text());
-  // save update-time
-  resultJson.date = $sourceDate.text();
 
-  const $allData = $('table.status-datatable').children('tbody');
-  // get confiremd Number
-  const $confirmedIndex = $allData.children('tr').children('th').children('p');
-  // get confiremd Info without nubmer
-  const $confiremdInfo = $allData.children('tr').children('td');
-  for (var i = 0; i < $confirmedIndex.length; i++) {
-    resultJson[$confirmedIndex[i].children[0].data] = {
-      patienId: $confiremdInfo[i * 6].children[0].data,
-      confiremdDate: $confiremdInfo[i * 6 + 1].children[0].data,
-      residence: $confiremdInfo[i * 6 + 2].children[0].data,
-      tripHistory: $confiremdInfo[i * 6 + 3].children[0].data,
-      visitType: $confiremdInfo[i * 6 + 4].children[0].data,
-      takeAction: $confiremdInfo[i * 6 + 5].children[0].data,
-    };
+  const $ = cheerio.load(html);
+
+  const $updatedDate = $('h5.update-date').children('strong').eq(0);
+  console.log(`updateTime: ${$updatedDate.text()}`);
+  resultJson.date = $updatedDate.text();
+
+  const $coronaDataSet = $('table.status-datatable').children('tbody');
+  const $indexes = $coronaDataSet.children('tr').children('th').children('p');
+  const $items = $coronaDataSet.children('tr').children('td');
+
+  for (let i = 0; i < $indexes.length; i++) {
+    resultJson[$indexes[i].children[0].data] = {};
+    resultItemNames.forEach((itemName, idx) => {
+      resultJson[$indexes[i].children[0].data][itemName] = $items[i * 6 + idx].children[0].data;
+    });
   }
-  // console.log(resultJson);
-  /* old way
-  // change to array
-  const dataArr = $allData.children('tr').text().split('\n');
-  // replace \t
-  const regExpTab = new RegExp('\t', 'g');
-  for (var i = 0; i < dataArr.length; i++) {
-    dataArr[i] = dataArr[i].replace(regExpTab, '');
-    // console.log(i + ' : ' + dataArr[i]);
-  }
-  */
-  // data Save (YYYYMMDD.txt)
+
+  const dataDir = path.join(__dirname, 'coronaData');
+  const myDate = dayjs().format('YYYYMMDD');
   fs.writeFileSync(`${dataDir}/${myDate}.txt`, JSON.stringify(resultJson), 'utf8');
 });
