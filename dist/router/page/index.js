@@ -14,4 +14,4 @@ const pageRouter = (0, _express.Router)(); // console.log(join(__dirname, '../..
 exports.pageRouter = pageRouter;
 pageRouter.get('/', (req, res) => {
   res.render('index.html');
-});
+}); // pageRouter.get('/')

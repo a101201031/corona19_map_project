@@ -7,3 +7,5 @@ export const pageRouter = Router();
 pageRouter.get('/', (req, res) => {
   res.render('index.html');
 });
+
+// pageRouter.get('/')
