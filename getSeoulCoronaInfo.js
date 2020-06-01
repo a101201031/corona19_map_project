@@ -22,7 +22,6 @@ request.get(url, (error, res, html) => {
   const $coronaDataSet = $('table.status-datatable').children('tbody');
   const $indexes = $coronaDataSet.children('tr').children('th').children('p');
   const $items = $coronaDataSet.children('tr').children('td');
-  console.log($items[41].children[0].data);
   for (let i = 0; i < $indexes.length; i++) {
     resultJson[$indexes[i].children[0].data] = {};
     resultItemNames.forEach((itemName, idx) => {
