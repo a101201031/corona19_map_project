@@ -5,4 +5,19 @@ import { pageRouter } from './page';
 export const mainRouter = Router();
 
 mainRouter.use('/api', apiRouter);
-mainRouter.use('/', pageRouter);
+
+mainRouter.get('/:url', function (req, res) {
+  const url = req.params.url;
+  res.render(url, (err, html) => {
+    if (err) {
+      console.log(err.view.name);
+      res.status(404).send('NOT FOUND');
+    }
+    res.send(html);
+  });
+});
+
+mainRouter.get('/', function (req, res) {
+  res.render('index.html');
+});
+// mainRouter.use('/', pageRouter);

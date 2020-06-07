@@ -40,9 +40,6 @@ coronaDataRouter.get('/getResidenceInfo', (req, res) => {
     }
     fs.readFile(join(dataDir, files[files.length - 1]), 'utf8', (err, file) => {
       allInfoJson.data = JSON.parse(file);
-      //   const findData = Object.keys(allInfoJson.data).map((keyValue) => {
-      // return [keyValue, allInfoJson.data[keyValue]];
-      //   });
       const findData = objectToArray(allInfoJson.data);
       const resultData = findData.filter((item) => {
         if (item[1].residence === req.query.residence) {
@@ -66,7 +63,7 @@ coronaDataRouter.get('/getInfoJson', (req, res) => {
     fs.readFile(join(dataDir, files[files.length - 1]), 'utf8', (err, file) => {
       coronaInfoJson.data = JSON.parse(file);
       const coronaInfoArray = objectToArray(coronaInfoJson.data);
-      let residenceCountJson = {};
+      const residenceCountJson = {};
       coronaInfoArray.forEach((cur, index) => {
         const residence = cur[1].residence;
         if (!residenceCountJson[residence]) {

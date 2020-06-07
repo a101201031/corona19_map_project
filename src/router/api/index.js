@@ -1,5 +1,5 @@
 import { Router, request, response } from 'express';
-import { coronaDataRouter } from './coronaData';
+import { coronaDataRouter } from './responseCoronaData';
 export const apiRouter = Router();
 
-apiRouter.use('/coronaData', coronaDataRouter);
+apiRouter.use('/responseCsoronaData', coronaDataRouter);
