@@ -20,9 +20,9 @@ exports.swaggerRouter = swaggerRouter;
 const swaggerDefinition = {
   info: {
     // API informations (required)
-    title: '누추한 곳의 API',
+    title: 'CORONA MAP API',
     // Title (required)
-    version: '2.0.0',
+    version: '1.0.0',
     // Version (required)
     description: '안될수도 있을껄' // Description (optional)
 

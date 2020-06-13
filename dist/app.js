@@ -30,6 +30,8 @@ app.engine('html', ejs.renderFile);
 app.use(_express.default.static((0, _path.join)(__dirname, '/public')));
 app.use('/', _router.mainRouter);
 app.use(_swaggerDoc.swaggerRouter); // API Docs
-//app.get("/", (req, res) => res.send("hello World"));
+// app.use((req, res) => {
+//   res.status(400).send('Bad Request');
+// });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

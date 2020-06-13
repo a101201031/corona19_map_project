@@ -23,6 +23,8 @@ app.use(express.static(join(__dirname, '/public')));
 
 app.use('/', mainRouter);
 app.use(swaggerRouter); // API Docs
-//app.get("/", (req, res) => res.send("hello World"));
+// app.use((req, res) => {
+//   res.status(400).send('Bad Request');
+// });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

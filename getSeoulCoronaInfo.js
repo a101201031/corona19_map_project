@@ -25,7 +25,11 @@ request.get(url, (error, res, html) => {
   for (let i = 0; i < $indexes.length; i++) {
     resultJson[$indexes[i].children[0].data] = {};
     resultItemNames.forEach((itemName, idx) => {
-      resultJson[$indexes[i].children[0].data][itemName] = $items[i * 6 + idx].children[0].data;
+      if ($items[i * 6 + idx].children[0] === undefined) {
+        resultJson[$indexes[i].children[0].data][itemName] = '-';
+      } else {
+        resultJson[$indexes[i].children[0].data][itemName] = $items[i * 6 + idx].children[0].data;
+      }
     });
   }
 

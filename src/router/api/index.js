@@ -1,5 +1,6 @@
 import { Router, request, response } from 'express';
-import { coronaDataRouter } from './responseCoronaData';
+
+import { confirmedCasesRouter } from './confirmedCases';
 export const apiRouter = Router();
 
-apiRouter.use('/responseCsoronaData', coronaDataRouter);
+apiRouter.use('/confirmed-cases', confirmedCasesRouter);

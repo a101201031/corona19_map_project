@@ -7,8 +7,8 @@ export const swaggerRouter = Router();
 const swaggerDefinition = {
   info: {
     // API informations (required)
-    title: '누추한 곳의 API', // Title (required)
-    version: '2.0.0', // Version (required)
+    title: 'CORONA MAP API', // Title (required)
+    version: '1.0.0', // Version (required)
     description: '안될수도 있을껄', // Description (optional)
   },
   // schemes: "http",

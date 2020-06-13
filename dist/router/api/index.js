@@ -7,8 +7,8 @@ exports.apiRouter = void 0;
 
 var _express = require("express");
 
-var _responseCoronaData = require("./responseCoronaData");
+var _confirmedCases = require("./confirmedCases");
 
 const apiRouter = (0, _express.Router)();
 exports.apiRouter = apiRouter;
-apiRouter.use('/responseCsoronaData', _responseCoronaData.coronaDataRouter);
+apiRouter.use('/confirmed-cases', _confirmedCases.confirmedCasesRouter);
