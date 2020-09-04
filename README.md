@@ -1,5 +1,13 @@
 # Corona 19 Map Project
 
+##
+Javascript ES6
+Node js
+Babel
+Swagger
+
+MongoDB
+
 ## API Router
 
 1. api/coronaData.js =>

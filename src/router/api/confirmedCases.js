@@ -15,19 +15,7 @@ function objectToArray(obj) {
   });
 }
 
-confirmedCasesRouter.get('/text', (req, res) => {
-  const dataDir = join(__dirname, '../../../coronaData');
-  fs.readdir(dataDir, 'utf8', (err, files) => {
-    if (err) {
-      return res.status(500).send('not found corona data.');
-    }
-    fs.readFile(join(dataDir, files[files.length - 1]), 'utf8', (err, file) => {
-      res.status(200).send(file);
-    });
-  });
-});
-
-confirmedCasesRouter.get('/json', (req, res) => {
+confirmedCasesRouter.get('/', (req, res) => {
   const coronaInfoJson = responseFormat;
   const dataDir = join(__dirname, '../../../coronaData');
   fs.readdir(dataDir, 'utf8', (err, files) => {
@@ -53,7 +41,7 @@ confirmedCasesRouter.get('/json', (req, res) => {
   });
 });
 
-confirmedCasesRouter.get('/json/:residence', (req, res) => {
+confirmedCasesRouter.get('/residence/:residence', (req, res) => {
   const allInfoJson = responseFormat;
   console.log(req.params.residence);
   const dataDir = join(__dirname, '../../../coronaData');

@@ -6,11 +6,13 @@ var bodyPaser = _interopRequireWildcard(require("body-parser"));
 
 var ejs = _interopRequireWildcard(require("ejs"));
 
+var _path = require("path");
+
 var _swaggerDoc = require("./swaggerDoc");
 
 var _router = require("./router");
 
-var _path = require("path");
+var _dbConnect = _interopRequireDefault(require("./dbConnect"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -30,8 +32,9 @@ app.engine('html', ejs.renderFile);
 app.use(_express.default.static((0, _path.join)(__dirname, '/public')));
 app.use('/', _router.mainRouter);
 app.use(_swaggerDoc.swaggerRouter); // API Docs
-// app.use((req, res) => {
-//   res.status(400).send('Bad Request');
-// });
 
+app.use((req, res) => {
+  res.status(400).send('Bad Request');
+});
+(0, _dbConnect.default)();
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
