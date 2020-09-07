@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const confirmedCasesSchema = new Schema({
-  confiremdNo: { type: Number, unique: true, index: true },
+  confirmedNo: { type: Number, unique: true, index: true },
   patienId: { type: Number },
-  confiremdDate: { type: Date },
+  confirmedDate: { type: Date },
   residence: { type: String },
   tripHistory: { type: String },
   visitType: { type: String },
