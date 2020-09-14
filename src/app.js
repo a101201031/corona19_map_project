@@ -7,6 +7,9 @@ import { swaggerRouter } from './swaggerDoc';
 import { mainRouter } from './router';
 
 import dbConnect from './dbConnect';
+import { CoronaInfo } from './getCoronaInfo';
+
+const coronaInfo = new CoronaInfo();
 
 const app = express();
 const port = 3000;
