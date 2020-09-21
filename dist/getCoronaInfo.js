@@ -11,19 +11,22 @@ var _seoulCoronaCrawler = _interopRequireDefault(require("./crawler/seoulCoronaC
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const confirmedCases = new _confirmedCases.default();
-
+// const confirmedCases = new confirmedCasesModel();
 class CoronaInfo {
   constructor() {
     this.save();
   }
 
-  async save() {
-    const coronaData = await (0, _seoulCoronaCrawler.default)();
-    console.log(coronaData[0]);
-    setTimeout(() => {
-      console.log(coronaData[coronaData.length - 1]);
-    }, 3000);
+  get info() {
+    return this.data;
+  }
+
+  async load() {
+    this.data = await (0, _seoulCoronaCrawler.default)();
+  }
+
+  save() {
+    _confirmedCases.default.insertMany(this.data);
   }
 
 }

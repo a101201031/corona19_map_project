@@ -23,6 +23,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const coronaInfo = new _getCoronaInfo.CoronaInfo();
+setTimeout(() => {
+  console.log(coronaInfo.info);
+  setTimeout(() => {
+    coronaInfo.save();
+  }, 2000);
+}, 8000);
 const app = (0, _express.default)();
 const port = 3000;
 app.use(bodyPaser.json());

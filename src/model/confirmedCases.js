@@ -11,4 +11,4 @@ const confirmedCasesSchema = new Schema({
   takeAction: { type: String },
 });
 
-module.exports = mongoose.model('confirmedCases', confirmedCasesSchema);
+module.exports = mongoose.model('ConfirmedCases', confirmedCasesSchema);

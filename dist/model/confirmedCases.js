@@ -30,4 +30,4 @@ const confirmedCasesSchema = new Schema({
     type: String
   }
 });
-module.exports = _mongoose.default.model('confirmedCases', confirmedCasesSchema);
+module.exports = _mongoose.default.model('ConfirmedCases', confirmedCasesSchema);

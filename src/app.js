@@ -10,6 +10,12 @@ import dbConnect from './dbConnect';
 import { CoronaInfo } from './getCoronaInfo';
 
 const coronaInfo = new CoronaInfo();
+setTimeout(() => {
+  console.log(coronaInfo.info);
+  setTimeout(() => {
+    coronaInfo.save();
+  }, 2000);
+}, 8000);
 
 const app = express();
 const port = 3000;
