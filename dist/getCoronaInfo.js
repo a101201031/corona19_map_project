@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // const confirmedCases = new confirmedCasesModel();
 class CoronaInfo {
   constructor() {
-    this.save();
+    this.load();
   }
 
   get info() {
@@ -26,7 +26,16 @@ class CoronaInfo {
   }
 
   save() {
-    _confirmedCases.default.insertMany(this.data);
+    this.data.map(async (val, index) => {
+      // console.log(`confirmedNo : ${val.confirmedNo}`);
+      // console.log(val);
+      const result = await _confirmedCases.default.updateOne({
+        confirmedNo: val.confirmedNo
+      }, val, {
+        upsert: true
+      });
+      console.log(`success: ${index}`);
+    });
   }
 
 }

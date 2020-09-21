@@ -16,8 +16,12 @@ export class CoronaInfo {
     this.data = await seoulCoronaCrawler();
   }
 
-  async save() {
-    const result = await confirmedCasesModel.updateMany(this.data);
-    console.log('insert');
+  save() {
+    this.data.map(async (val, index) => {
+      // console.log(`confirmedNo : ${val.confirmedNo}`);
+      // console.log(val);
+      const result = await confirmedCasesModel.updateOne({ confirmedNo: val.confirmedNo }, val, { upsert: true });
+      console.log(`success: ${index}`);
+    });
   }
 }
