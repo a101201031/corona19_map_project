@@ -5,13 +5,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CoronaInfo = void 0;
 
+var _mongoose = _interopRequireDefault(require("mongoose"));
+
 var _confirmedCases = _interopRequireDefault(require("./model/confirmedCases"));
 
 var _seoulCoronaCrawler = _interopRequireDefault(require("./crawler/seoulCoronaCrawler"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const confirmedCases = new confirmedCasesModel();
+const confirmedCases = new _confirmedCases.default();
+
 class CoronaInfo {
   constructor() {
     this.load();
@@ -25,17 +28,36 @@ class CoronaInfo {
     this.data = await (0, _seoulCoronaCrawler.default)();
   }
 
-  save() {
-    this.data.map(async (val, index) => {
-      // console.log(`confirmedNo : ${val.confirmedNo}`);
-      // console.log(val);
-      const result = await _confirmedCases.default.updateOne({
-        confirmedNo: val.confirmedNo
-      }, val, {
-        upsert: true
+  async save() {
+    console.log('save...');
+    const upsertQuery = [];
+
+    try {
+      const session = await _mongoose.default.startSession();
+      session.startTransaction();
+      await this.data.forEach(async val => {
+        const upsertDoc = {
+          updateOne: {
+            filter: {
+              confirmedNo: val.confirmedNo
+            },
+            update: val,
+            upsert: true
+          },
+          session: session
+        }; // console.log(upsertDoc.updateOne);
+
+        await upsertQuery.push(upsertDoc);
       });
-      console.log(`success: ${index}`);
-    });
+      await confirmedCases.collection.bulkWrite(upsertQuery);
+      await confirmedCases.save({
+        session
+      });
+      await session.commitTransaction();
+      session.endSession();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
 }

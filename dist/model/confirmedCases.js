@@ -8,8 +8,7 @@ const Schema = _mongoose.default.Schema;
 const confirmedCasesSchema = new Schema({
   confirmedNo: {
     type: Number,
-    unique: true,
-    index: true
+    unique: true
   },
   patienId: {
     type: Number
