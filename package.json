@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "bulid": "node ./node_modules/typescript/bin/tsc",
-    "start:auto": "./node_modules/nodemon/bin/nodemon.js --watch src --delay 1 --exec 'ts-node' src/index.ts"
+    "start:auto": "./node_modules/nodemon/bin/nodemon.js --watch src --delay 1 --exec 'ts-node' src/app.ts"
   },
   "name": "corona19_map_project",
   "version": "1.0.0",
