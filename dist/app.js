@@ -24,6 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bodyPaser = __importStar(require("body-parser"));
+const router_1 = require("./router");
 const app = express_1.default();
 const port = 3000;
 app.use(bodyPaser.json());
@@ -32,6 +33,7 @@ app.use(bodyPaser.urlencoded({
 }));
 app.set('views', __dirname + '/public/views');
 // app.use(swaggerRouter);
+app.use('/', router_1.mainRouter);
 app.use((req, res) => {
     res.status(400).send('Bad Request');
 });
