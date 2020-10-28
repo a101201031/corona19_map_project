@@ -3,6 +3,8 @@ import * as bodyPaser from 'body-parser';
 
 import { mainRouter } from './router';
 
+import dbConnect from './dbConnect';
+
 const app = express();
 const port = 3000;
 
@@ -20,5 +22,7 @@ app.use('/', mainRouter);
 app.use((req, res) => {
   res.status(400).send('Bad Request');
 });
+
+dbConnect();
 
 app.listen(port, () => console.log(`APP listening at http://localhost:${port}`));

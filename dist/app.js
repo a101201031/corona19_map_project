@@ -25,6 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bodyPaser = __importStar(require("body-parser"));
 const router_1 = require("./router");
+const dbConnect_1 = __importDefault(require("./dbConnect"));
 const app = express_1.default();
 const port = 3000;
 app.use(bodyPaser.json());
@@ -37,5 +38,6 @@ app.use('/', router_1.mainRouter);
 app.use((req, res) => {
     res.status(400).send('Bad Request');
 });
+dbConnect_1.default();
 app.listen(port, () => console.log(`APP listening at http://localhost:${port}`));
 //# sourceMappingURL=app.js.map
