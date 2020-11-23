@@ -9,37 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.confirmedCasesModel = void 0;
+exports.GlobalCoronaInfoModel = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
-class ConfirmedCases {
+class GlobalCoronaInfo {
 }
 __decorate([
-    typegoose_1.prop({ unique: true }),
-    __metadata("design:type", Number)
-], ConfirmedCases.prototype, "confirmedNo", void 0);
-__decorate([
     typegoose_1.prop(),
     __metadata("design:type", Number)
-], ConfirmedCases.prototype, "patienId", void 0);
+], GlobalCoronaInfo.prototype, "newConfirmed", void 0);
 __decorate([
     typegoose_1.prop(),
-    __metadata("design:type", String)
-], ConfirmedCases.prototype, "confirmedDate", void 0);
+    __metadata("design:type", Number)
+], GlobalCoronaInfo.prototype, "totalConfirmed", void 0);
 __decorate([
     typegoose_1.prop(),
-    __metadata("design:type", String)
-], ConfirmedCases.prototype, "residence", void 0);
+    __metadata("design:type", Number)
+], GlobalCoronaInfo.prototype, "newDeaths", void 0);
 __decorate([
     typegoose_1.prop(),
-    __metadata("design:type", String)
-], ConfirmedCases.prototype, "tripHistory", void 0);
+    __metadata("design:type", Number)
+], GlobalCoronaInfo.prototype, "totalDeaths", void 0);
 __decorate([
     typegoose_1.prop(),
-    __metadata("design:type", String)
-], ConfirmedCases.prototype, "visitType", void 0);
+    __metadata("design:type", Number)
+], GlobalCoronaInfo.prototype, "newRecovered", void 0);
 __decorate([
     typegoose_1.prop(),
-    __metadata("design:type", String)
-], ConfirmedCases.prototype, "takeAction", void 0);
-exports.confirmedCasesModel = typegoose_1.getModelForClass(ConfirmedCases);
-//# sourceMappingURL=confirmedCase.js.map
+    __metadata("design:type", Number)
+], GlobalCoronaInfo.prototype, "totalRecovered", void 0);
+__decorate([
+    typegoose_1.prop(),
+    __metadata("design:type", Date)
+], GlobalCoronaInfo.prototype, "lastUpdate", void 0);
+exports.GlobalCoronaInfoModel = typegoose_1.getModelForClass(GlobalCoronaInfo);
+//# sourceMappingURL=globalCoronaInfo.js.map
