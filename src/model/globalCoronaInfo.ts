@@ -1,19 +1,19 @@
 import { prop, getModelForClass } from '@typegoose/typegoose';
 
 class GlobalCoronaInfo {
-  @prop()
+  @prop({ required: true })
   public newConfirmed?: Number;
-  @prop()
+  @prop({ required: true })
   public totalConfirmed?: Number;
-  @prop()
+  @prop({ required: true })
   public newDeaths?: Number;
-  @prop()
+  @prop({ required: true })
   public totalDeaths?: Number;
-  @prop()
+  @prop({ required: true })
   public newRecovered?: Number;
-  @prop()
+  @prop({ required: true })
   public totalRecovered?: Number;
-  @prop()
+  @prop({ required: true })
   public lastUpdate?: Date;
 }
 export const GlobalCoronaInfoModel = getModelForClass(GlobalCoronaInfo);

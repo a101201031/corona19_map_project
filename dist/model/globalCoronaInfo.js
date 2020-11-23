@@ -14,31 +14,31 @@ const typegoose_1 = require("@typegoose/typegoose");
 class GlobalCoronaInfo {
 }
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "newConfirmed", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "totalConfirmed", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "newDeaths", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "totalDeaths", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "newRecovered", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Number)
 ], GlobalCoronaInfo.prototype, "totalRecovered", void 0);
 __decorate([
-    typegoose_1.prop(),
+    typegoose_1.prop({ required: true }),
     __metadata("design:type", Date)
 ], GlobalCoronaInfo.prototype, "lastUpdate", void 0);
 exports.GlobalCoronaInfoModel = typegoose_1.getModelForClass(GlobalCoronaInfo);
