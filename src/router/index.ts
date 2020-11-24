@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 
-import { confirmedCaseRouter } from './confirmedCase';
+import { globalRouter } from './coronaInfo/global';
+
 export const mainRouter = Router();
 
 mainRouter.get('/', (req: Request, res: Response) => {
@@ -8,4 +9,4 @@ mainRouter.get('/', (req: Request, res: Response) => {
   res.send(message);
 });
 
-mainRouter.use('/confirmed-case', confirmedCaseRouter);
+mainRouter.use('/global-corona-info', globalRouter);
