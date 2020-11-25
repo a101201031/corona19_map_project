@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@typegoose/typegoose": "^7.4.1",
     "@types/axios": "^0.14.0",
     "@types/mongoose": "^5.7.36",
     "axios": "^0.21.0",
