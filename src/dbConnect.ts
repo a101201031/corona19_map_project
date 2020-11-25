@@ -1,10 +1,10 @@
-import mongoose, { connection } from 'mongoose';
 import { config } from 'dotenv';
+import { connect, connection } from 'mongoose';
 
 config();
 export default () => {
   function dbConnect() {
-    mongoose.connect(process.env.DB_FULL_URL ? process.env.DB_FULL_URL : 'none', (err) => {
+    connect(process.env.DB_FULL_URL ? process.env.DB_FULL_URL : 'none', (err) => {
       if (err) {
         console.log('--MongoDB Connection Error--');
       } else {
@@ -13,7 +13,7 @@ export default () => {
     });
   }
   dbConnect();
-  mongoose.connection.on('disconnected', dbConnect);
+  connection.on('disconnected', dbConnect);
 };
 
 console.log(typeof process.env.DB_FULL_URL);
