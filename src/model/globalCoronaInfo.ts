@@ -1,19 +1,25 @@
-import { prop, getModelForClass } from '@typegoose/typegoose';
+import { Document, model, Schema } from 'mongoose';
 
-class GlobalCoronaInfo {
-  @prop({ required: true })
-  public newConfirmed!: Number;
-  @prop({ required: true })
-  public totalConfirmed!: Number;
-  @prop({ required: true })
-  public newDeaths!: Number;
-  @prop({ required: true })
-  public totalDeaths!: Number;
-  @prop({ required: true })
-  public newRecovered!: Number;
-  @prop({ required: true })
-  public totalRecovered!: Number;
-  @prop({ required: true })
-  public lastUpdate!: Date;
+export interface GlobalCoronaInfoTypes {
+  newConfirmed: number;
+  totalConfirmed: number;
+  newDeaths: number;
+  totalDeaths: number;
+  newRecovered: number;
+  totalRecovered: number;
+  lastUpdate: Date;
 }
-export const GlobalCoronaInfoModel = getModelForClass(GlobalCoronaInfo);
+
+const GlobalCoronaInfoSchema = new Schema({
+  newConfirmed: { type: Number, required: true },
+  totalConfrmed: { type: Number, required: true },
+  newDeaths: { type: Number, required: true },
+  totalDeaths: { type: Number, required: true },
+  newRecovered: { type: Number, required: true },
+  totalRecovered: { type: Number, required: true },
+  lastUpdate: { type: Date, required: true },
+});
+
+export interface GlobalCoronaInfoDocument extends GlobalCoronaInfoTypes, Document {}
+
+export const GlobalCoronaInfoModel = model<GlobalCoronaInfoDocument>('GlobalCoronaInfo', GlobalCoronaInfoSchema);

@@ -1,23 +1,32 @@
-import { prop, getModelForClass } from '@typegoose/typegoose';
+import { Document, model, Schema } from 'mongoose';
 
-class CountriesCoronaInfo {
-  @prop({ required: true })
-  public country!: String;
-  @prop({ required: true })
-  public countryCode!: String;
-  @prop({ required: true })
-  public newConfirmed!: Number;
-  @prop({ required: true })
-  public totalConfirmed!: Number;
-  @prop({ required: true })
-  public newDeaths!: Number;
-  @prop({ required: true })
-  public totalDeaths!: Number;
-  @prop({ required: true })
-  public newRecovered!: Number;
-  @prop({ required: true })
-  public totalRecovered!: Number;
-  @prop({ required: true })
-  public lastUpdate!: Date;
+export interface CountriesCoronaInfoTypes {
+  country: string;
+  countryCode: string;
+  newConfirmed: number;
+  totalConfrmed: number;
+  newDeaths: number;
+  totalDeaths: number;
+  newRecovered: number;
+  totalRecovered: number;
+  lastUpdate: Date;
 }
-export const CountriesCoronaInfoModel = getModelForClass(CountriesCoronaInfo);
+
+const CountriesCoronaInfoSchema = new Schema({
+  country: { type: String, required: true },
+  countryCode: { type: String, required: true },
+  newConfirmed: { type: Number, required: true },
+  totalConfrmed: { type: Number, required: true },
+  newDeaths: { type: Number, required: true },
+  totalDeaths: { type: Number, required: true },
+  newRecovered: { type: Number, required: true },
+  totalRecovered: { type: Number, required: true },
+  lastUpdate: { type: Date, required: true },
+});
+
+export interface CountriesCoronaInfoDocument extends CountriesCoronaInfoTypes, Document {}
+
+export const CountriesCoronaInfoModel = model<CountriesCoronaInfoDocument>(
+  'CountriesCoronaInfo',
+  CountriesCoronaInfoSchema
+);
