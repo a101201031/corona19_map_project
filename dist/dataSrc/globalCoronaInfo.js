@@ -20,7 +20,7 @@ exports.srcGlobalInfo = async () => {
         return returnObj;
     }
     catch (err) {
-        return err;
+        throw err;
     }
 };
 //# sourceMappingURL=globalCoronaInfo.js.map

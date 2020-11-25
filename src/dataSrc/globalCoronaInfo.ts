@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { GlobalCoronaInfoTypes } from '../model/globalCoronaInfo';
 
 export const srcGlobalInfo = async () => {
   try {
     const res = await axios.get('https://api.covid19api.com/summary');
-    const returnObj = {
+    const returnObj: GlobalCoronaInfoTypes = {
       newConfirmed: res.data.Global.NewConfirmed,
       totalConfirmed: res.data.Global.TotalConfirmed,
       newDeaths: res.data.Global.NewDeaths,
@@ -14,6 +15,6 @@ export const srcGlobalInfo = async () => {
     };
     return returnObj;
   } catch (err) {
-    return err;
+    throw err;
   }
 };
