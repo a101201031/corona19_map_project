@@ -16,8 +16,17 @@ globalRouter.get('/', async (req: Request, res: Response) => {
 globalRouter.post('/refresh', async (req: Request, res: Response) => {
   try {
     const srcData: GlobalCoronaInfoTypes = await srcGlobalInfo();
-    GlobalCoronaInfoModel.create(srcData);
-    res.status(200).json({ message: 'request success' });
+    const orgData: GlobalCoronaInfoTypes[] = await GlobalCoronaInfoModel.find();
+
+    let message = '';
+
+    if (new Date(srcData.lastUpdate) > orgData[0]?.lastUpdate) {
+      const updateResult = await GlobalCoronaInfoModel.update(orgData[0], srcData);
+      message = 'data refreshed.';
+    } else {
+      message = 'data is latest.';
+    }
+    res.status(200).json({ message });
   } catch (err) {
     res.status(500).json({ message: 'SERVER ERROR' });
   }
