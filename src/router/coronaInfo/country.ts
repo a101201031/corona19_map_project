@@ -18,7 +18,6 @@ countryRouter.get('/', async (req: Request, res: Response) => {
         CountryCode: body.CountryCode,
       });
       resData.data = data;
-      console.log(resData.data);
       resData.message = resData.data ? 'success.' : 'not found country.';
     } else {
       const data: CountryCoronaInfoTypes[] = await CountryCoronaInfoModel.find();
