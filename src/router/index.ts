@@ -1,5 +1,5 @@
-import { Router, Request, Response } from 'express';
-
+import { Request, Response, Router } from 'express';
+import { countryRouter } from './coronaInfo/country';
 import { globalRouter } from './coronaInfo/global';
 
 export const mainRouter = Router();
@@ -10,3 +10,4 @@ mainRouter.get('/', (req: Request, res: Response) => {
 });
 
 mainRouter.use('/global-corona-info', globalRouter);
+mainRouter.use('/countries-corona-info', countryRouter);
