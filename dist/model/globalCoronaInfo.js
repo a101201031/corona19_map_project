@@ -4,7 +4,7 @@ exports.GlobalCoronaInfoModel = void 0;
 const mongoose_1 = require("mongoose");
 const GlobalCoronaInfoSchema = new mongoose_1.Schema({
     NewConfirmed: { type: Number, required: true },
-    TotalConfrmed: { type: Number, required: true },
+    TotalConfirmed: { type: Number, required: true },
     NewDeaths: { type: Number, required: true },
     TotalDeaths: { type: Number, required: true },
     NewRecovered: { type: Number, required: true },

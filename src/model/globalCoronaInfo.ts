@@ -12,7 +12,7 @@ export interface GlobalCoronaInfoTypes {
 
 const GlobalCoronaInfoSchema = new Schema({
   NewConfirmed: { type: Number, required: true },
-  TotalConfrmed: { type: Number, required: true },
+  TotalConfirmed: { type: Number, required: true },
   NewDeaths: { type: Number, required: true },
   TotalDeaths: { type: Number, required: true },
   NewRecovered: { type: Number, required: true },
