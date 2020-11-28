@@ -19,7 +19,7 @@ exports.globalRouter.post('/refresh', async (req, res) => {
         const srcData = await globalCoronaInfo_1.srcGlobalInfo();
         const orgData = await globalCoronaInfo_2.GlobalCoronaInfoModel.find();
         let message = '';
-        if (new Date(srcData.lastUpdate) > orgData[0]?.lastUpdate) {
+        if (new Date(srcData.LastUpdate) > orgData[0]?.LastUpdate) {
             const updateResult = await globalCoronaInfo_2.GlobalCoronaInfoModel.update(orgData[0], srcData);
             message = 'data refreshed.';
         }

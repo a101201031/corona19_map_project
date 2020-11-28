@@ -1,23 +1,23 @@
 import { Document, model, Schema } from 'mongoose';
 
 export interface GlobalCoronaInfoTypes {
-  newConfirmed: number;
-  totalConfirmed: number;
-  newDeaths: number;
-  totalDeaths: number;
-  newRecovered: number;
-  totalRecovered: number;
-  lastUpdate: Date;
+  NewConfirmed: number;
+  TotalConfirmed: number;
+  NewDeaths: number;
+  TotalDeaths: number;
+  NewRecovered: number;
+  TotalRecovered: number;
+  LastUpdate: Date;
 }
 
 const GlobalCoronaInfoSchema = new Schema({
-  newConfirmed: { type: Number, required: true },
-  totalConfrmed: { type: Number, required: true },
-  newDeaths: { type: Number, required: true },
-  totalDeaths: { type: Number, required: true },
-  newRecovered: { type: Number, required: true },
-  totalRecovered: { type: Number, required: true },
-  lastUpdate: { type: Date, required: true },
+  NewConfirmed: { type: Number, required: true },
+  TotalConfrmed: { type: Number, required: true },
+  NewDeaths: { type: Number, required: true },
+  TotalDeaths: { type: Number, required: true },
+  NewRecovered: { type: Number, required: true },
+  TotalRecovered: { type: Number, required: true },
+  LastUpdate: { type: Date, required: true },
 });
 
 export interface GlobalCoronaInfoDocument extends GlobalCoronaInfoTypes, Document {}

@@ -20,7 +20,7 @@ globalRouter.post('/refresh', async (req: Request, res: Response) => {
 
     let message = '';
 
-    if (new Date(srcData.lastUpdate) > orgData[0]?.lastUpdate) {
+    if (new Date(srcData.LastUpdate) > orgData[0]?.LastUpdate) {
       const updateResult = await GlobalCoronaInfoModel.update(orgData[0], srcData);
       message = 'data refreshed.';
     } else {
