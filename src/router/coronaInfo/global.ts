@@ -4,30 +4,42 @@ import { GlobalCoronaInfoModel, GlobalCoronaInfoTypes } from '../../model/global
 
 export const globalRouter = Router();
 
+interface resGlobalTypes {
+  message: string;
+  data?: GlobalCoronaInfoTypes | GlobalCoronaInfoTypes[] | null;
+}
+
 globalRouter.get('/', async (req: Request, res: Response) => {
+  const resData: resGlobalTypes = {
+    message: '',
+  };
   try {
-    const resData: GlobalCoronaInfoTypes[] = await GlobalCoronaInfoModel.find();
+    const data: GlobalCoronaInfoTypes[] = await GlobalCoronaInfoModel.find();
+    resData.data = data;
     res.status(200).json(resData);
   } catch (err) {
-    res.status(500).json({ message: 'SERVER ERROR.' });
+    resData.message = 'SERVER ERROR.';
+    res.status(500).json(resData);
   }
 });
 
 globalRouter.post('/refresh', async (req: Request, res: Response) => {
+  const resData: resGlobalTypes = {
+    message: '',
+  };
   try {
     const srcData: GlobalCoronaInfoTypes = await srcGlobalInfo();
     const orgData: GlobalCoronaInfoTypes[] = await GlobalCoronaInfoModel.find();
 
-    let message = '';
-
     if (new Date(srcData.LastUpdate) > orgData[0]?.LastUpdate) {
       const updateResult = await GlobalCoronaInfoModel.update(orgData[0], srcData);
-      message = 'data refreshed.';
+      resData.message = 'data refreshed.';
     } else {
-      message = 'data is latest.';
+      resData.message = 'data is latest.';
     }
-    res.status(200).json({ message });
+    res.status(200).json(resData);
   } catch (err) {
-    res.status(500).json({ message: 'SERVER ERROR' });
+    resData.message = 'SERVER ERROR.';
+    res.status(500).json(resData);
   }
 });

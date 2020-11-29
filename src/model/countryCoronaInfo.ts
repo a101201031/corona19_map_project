@@ -4,7 +4,7 @@ export interface CountryCoronaInfoTypes {
   Country: string;
   CountryCode: string;
   NewConfirmed: number;
-  TotalConfrmed: number;
+  TotalConfirmed: number;
   NewDeaths: number;
   TotalDeaths: number;
   NewRecovered: number;

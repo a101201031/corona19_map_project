@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { CountryCoronaInfoModel, CountryCoronaInfoTypes } from '../../model/countryCoronaInfo';
+
 export const countryRouter = Router();
 
 interface resCountryTypes {
@@ -24,8 +25,9 @@ countryRouter.get('/', async (req: Request, res: Response) => {
       resData.data = data;
       resData.message = 'success.';
     }
-    res.status(200).json(resData);
+    res.status(resData.data ? 200 : 400).json(resData);
   } catch (err) {
-    res.status(500).json({ message: 'SERVER ERROR.' });
+    resData.message = 'SERVER ERROR.';
+    res.status(500).json(resData);
   }
 });
