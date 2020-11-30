@@ -15,5 +15,3 @@ export default () => {
   dbConnect();
   connection.on('disconnected', dbConnect);
 };
-
-console.log(typeof process.env.DB_FULL_URL);
