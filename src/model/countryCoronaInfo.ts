@@ -16,7 +16,7 @@ const CountryCoronaInfoSchema = new Schema({
   Country: { type: String, required: true },
   CountryCode: { type: String, required: true },
   NewConfirmed: { type: Number, required: true },
-  TotalConfrmed: { type: Number, required: true },
+  TotalConfirmed: { type: Number, required: true },
   NewDeaths: { type: Number, required: true },
   TotalDeaths: { type: Number, required: true },
   NewRecovered: { type: Number, required: true },
