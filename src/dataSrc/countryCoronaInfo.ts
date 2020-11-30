@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CountryCoronaInfoTypes } from '../model/countryCoronaInfo';
 
-interface sourceCountryCoronaInfoTypes extends CountryCoronaInfoTypes {
+interface sourceCountryCoronaInfoTypes extends Omit<CountryCoronaInfoTypes, 'LastUpdate'> {
   Date: Date;
 }
 
