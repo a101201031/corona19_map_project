@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CountryCoronaInfoTypes } from '../model/countryCoronaInfo';
 
-interface sourceCountryCoronaInfoTypes extends Omit<CountryCoronaInfoTypes, 'LastUpdate'> {
+interface SourceCountryCoronaInfoTypes extends Omit<CountryCoronaInfoTypes, 'LastUpdate'> {
   Date: Date;
 }
 
@@ -10,7 +10,7 @@ export const srcCountriesInfo = async () => {
     const res = await axios.get('https://api.covid19api.com/summary');
     const returnArray: CountryCoronaInfoTypes[] = [];
 
-    res.data.Countries.forEach((val: sourceCountryCoronaInfoTypes) => {
+    res.data.Countries.forEach((val: SourceCountryCoronaInfoTypes) => {
       const pushData: CountryCoronaInfoTypes = {
         Country: val.Country,
         CountryCode: val.CountryCode,
