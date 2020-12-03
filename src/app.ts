@@ -25,7 +25,7 @@ app.use((req, res) => {
 dbConnect();
 
 const dataMgmt = new DataMgmt();
-schedule('* */3 * * *', () => {
+schedule('0 */3 * * *', () => {
   dataMgmt.sync();
 });
 
