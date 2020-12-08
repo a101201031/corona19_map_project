@@ -4,9 +4,11 @@ import { schedule } from 'node-cron';
 import { DataMgmt } from './dataMgmt';
 import dbConnect from './dbConnect';
 import { mainRouter } from './router';
+import { config } from 'dotenv';
 
+config();
 const app = express();
-const port = 3000;
+const port = process.env.EXPRESS_APP_SERVICE_PORT;
 
 app.use(bodyPaser.json());
 app.use(
