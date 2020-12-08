@@ -15,6 +15,7 @@ globalRouter.get('/', async (req: Request, res: Response) => {
   };
   try {
     const data: GlobalCoronaInfoTypes[] = await GlobalCoronaInfoModel.find();
+    resData.message = 'success.';
     resData.data = data;
     res.status(200).json(resData);
   } catch (err) {
