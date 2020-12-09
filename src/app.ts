@@ -1,22 +1,24 @@
-import * as bodyPaser from 'body-parser';
+import { json, urlencoded } from 'body-parser';
+import cors from 'cors';
+import { config } from 'dotenv';
 import express from 'express';
 import { schedule } from 'node-cron';
 import { DataMgmt } from './dataMgmt';
 import dbConnect from './dbConnect';
 import { mainRouter } from './router';
-import { config } from 'dotenv';
 
 config();
 const app = express();
 const port = process.env.EXPRESS_APP_SERVICE_PORT;
 
-app.use(bodyPaser.json());
+app.use(json());
 app.use(
-  bodyPaser.urlencoded({
+  urlencoded({
     extended: false,
   })
 );
 
+app.use(cors());
 app.set('views', __dirname + '/public/views');
 
 app.use('/', mainRouter);
