@@ -21,8 +21,9 @@ export class DataMgmt implements DataMgmtTypes {
     this.Countries = await srcCountriesInfo();
     this.Global = await srcGlobalInfo();
   }
-  sync() {
+  async sync() {
     console.log('sync...');
+    await this.load();
     this.countriesUpdate();
     this.globalUpdate();
   }
